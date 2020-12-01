@@ -7,8 +7,21 @@ public class TrebleCrossGame {
 
 	public static void main(String[] args) {
 		Scanner key = new Scanner(System.in); // create Scanner
+		boolean start = true;
+		while(start) {
+			boolean restart = playGame();
+			if(!restart) {
+				System.out.println("\nThank you for playing!");
+				start = false;
+			}
+		}	
+
+	}
+	
+	public static boolean playGame() {
+		boolean gameplay = true;
+		Scanner key = new Scanner(System.in); // create Scanner
 		List<Integer> selections = new ArrayList<Integer>();
-		
 		// Ask user for game board size
 		System.out.println("How big would you like your Treblecross Game to be?");
 		int boardLength = key.nextInt();
@@ -21,7 +34,13 @@ public class TrebleCrossGame {
 		do {
 			// Ask user for move, and print new board reflecting this
 			System.out.println("\n\nWhich box would you like to select?");
-			selections.add(key.nextInt());
+			int selected = key.nextInt();
+			// Error Checking for box
+			if(selected > boardLength || selected == 0) {
+				System.out.println("\nSelected Box is not on gameboard, please try again!");
+				break;
+			}
+			selections.add(selected);
 			gameBoard.setSelected(selections);
 			gameBoard.printBoard();
 			
@@ -43,8 +62,17 @@ public class TrebleCrossGame {
 				System.out.println("\n\nComputer Wins!");
 			}
 		} while (gameBoard.gameOver() == false);
-
+		
+		System.out.println("\nWould you like to play again?[Y,N]");
+		String c = key.next();
+		if( (c.toLowerCase()).equals("y") ) {
+			gameplay = true;
+		}
+		else {
+			gameplay = false;
+		}
+		return gameplay;
+			
+			
 	}
-	
-
 }
