@@ -37,7 +37,7 @@ public class TrebleCrossGame {
 			System.out.println("Computer selects box " + selections.get(selections.size() - 1));
 			gameBoard.setSelected(selections);
 			gameBoard.printBoard();
-			System.out.println("\n\nGameScore is: " + gameBoard.gameScore());
+			System.out.println("\n\nGame Score is: " + gameBoard.gameScore());
 			
 			if (gameBoard.gameOver()) {
 				System.out.println("\n\nComputer Wins!");
