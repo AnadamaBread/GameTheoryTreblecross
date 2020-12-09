@@ -80,7 +80,6 @@ public class TrebleBoard {
 		}
 		return score;
 	}
-	
 	// calculate if there is a winning move
 	public int winningMove() {
 		// check for a block of a 1 0 1 block of boxes
@@ -150,10 +149,10 @@ public class TrebleBoard {
 		// check if a middle box is a better move
 		for (int i = 2; i < board.size() - 2; i++) {
 			if (board.get(i - 2) == 0 && board.get(i - 1) == 0 && board.get(i) == 0 && board.get(i + 1) == 0 && board.get(i + 2) == 0) {
-				System.out.println("Index Checked: " + i);
+//				System.out.println("Index Checked: " + i);
 				board.set(i, 1);
 				tempScore = this.gameScore();
-				System.out.println("Game Score calculated: " + this.gameScore());
+//				System.out.println("Game Score calculated: " + this.gameScore());
 				if (tempScore < bestScore) {
 					bestScore = tempScore;
 					tempIndex = i;
@@ -172,6 +171,13 @@ public class TrebleBoard {
 			}
 		}
 		return tempIndex;
+	}
+	// Check if the game contains a winning move
+	public boolean hasWinningMove() {
+		if (this.winningMove() > 0) {
+			return true;
+		}
+		return false;
 	}
 
 }
